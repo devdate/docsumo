@@ -106,14 +106,16 @@ export const authRouter = createTRPCRouter({
       const { res } = ctx;
       return;
     }),
-  otpverify: publicProcedure.input(z.object({ otp: z.string().min(8) })).mutation(({ input, ctx }) => {
-    const { otp } = input;
-    if (otp === "12345678") {
-      return;
-    }
-    throw new TRPCError({
-      code: "UNAUTHORIZED",
-      message: "Invalid OTP",
-    });
-  }),
+  otpverify: publicProcedure
+    .input(z.object({ otp: z.string().min(8, { message: "OTP Incomplete" }) }))
+    .mutation(({ input, ctx }) => {
+      const { otp } = input;
+      if (otp === "12345678") {
+        return;
+      }
+      throw new TRPCError({
+        code: "UNAUTHORIZED",
+        message: "Invalid OTP",
+      });
+    }),
 });

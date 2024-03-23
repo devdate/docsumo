@@ -1,17 +1,17 @@
 "use client";
 
-import { CardTitle, CardDescription, CardHeader, CardContent, Card } from "./ui/card";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "./ui/form";
 import { Input } from "./ui/input";
-import { Label } from "./ui/label";
 import { PasswordInput } from "./ui/input-pass";
 import { Button } from "./ui/button";
 import { api } from "~/utils/api";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { Icon } from "@iconify/react";
 
 const formSchema = z.object({
   email: z.string().email({ message: "Please Enter a Valid Email" }),
@@ -19,6 +19,7 @@ const formSchema = z.object({
 });
 
 const SignIn = () => {
+  const [submitted, setSubmitted] = useState(false);
   const router = useRouter();
   const {
     mutateAsync: login,
@@ -30,6 +31,9 @@ const SignIn = () => {
       router.push("/");
       //   setName("");
     },
+    onSettled: () => {
+      setSubmitted(false);
+    },
   });
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -39,6 +43,7 @@ const SignIn = () => {
     },
   });
   async function onSubmit(values: z.infer<typeof formSchema>) {
+    setSubmitted(true);
     console.log(values);
     await login(values);
   }
@@ -83,7 +88,7 @@ const SignIn = () => {
           </div>
         )}
         <Button className="w-full text-xs font-normal tracking-widest" type="submit">
-          LOGIN
+          {submitted && <Icon className="mr-2 h-4 w-4 animate-spin" icon="ei:spinner-3" />}LOGIN
         </Button>
       </form>
     </Form>

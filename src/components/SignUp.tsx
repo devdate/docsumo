@@ -76,9 +76,9 @@ const SignUp = () => {
     isError: isOTPError,
     error: otpError,
   } = api.auth.otpverify.useMutation({
-    onSuccess: () => {
+    onSuccess: async () => {
       alert("Signed Up Successfully");
-      router.push("/signin");
+      await router.push("/signin");
     },
     onSettled: () => {
       setSubmitted(false);

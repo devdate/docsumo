@@ -9,7 +9,12 @@ const Header = () => {
     <nav className="border-gray-200 bg-white dark:bg-neutral-900">
       <div className="mx-auto flex max-w-screen-2xl flex-wrap items-center justify-between p-4">
         <Link href="" className="flex items-center space-x-3 text-gray-800  dark:text-white rtl:space-x-reverse">
-          <Image style={{ width: "100%" }} src={Logo} className="h-8 text-gray-800 dark:text-white" alt="NextJS Logo" />
+          <Image
+            style={{ width: "100%" }}
+            src={Logo as string}
+            className="h-8 text-gray-800 dark:text-white"
+            alt="NextJS Logo"
+          />
         </Link>
         <div className="flex items-center">
           <ul className="mt-0 hidden flex-row space-x-8 text-sm font-medium md:flex rtl:space-x-reverse">

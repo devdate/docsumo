@@ -80,7 +80,7 @@ export const authRouter = createTRPCRouter({
             countOfNumbers = 0,
             countOfSpecialChar = 0;
           for (let i = 0; i < password.length; i++) {
-            let ch = password.charAt(i);
+            const ch = password.charAt(i);
             if (!isNaN(+ch)) countOfNumbers++;
             else if (containsUppercase(ch)) countOfUpperCase++;
             else if (containsLowercase(ch)) countOfLowerCase++;
@@ -106,7 +106,7 @@ export const authRouter = createTRPCRouter({
       const { res } = ctx;
       return;
     }),
-  otpverify: publicProcedure.input(z.object({ otp: z.string().min(8) })).mutation(async ({ input, ctx }) => {
+  otpverify: publicProcedure.input(z.object({ otp: z.string().min(8) })).mutation(({ input, ctx }) => {
     const { otp } = input;
     if (otp === "12345678") {
       return;

@@ -9,7 +9,7 @@ interface post {
   selected: boolean;
 }
 
-let posts: post[] = Array.from({ length: 100 }, (_, i) => ({
+const posts: post[] = Array.from({ length: 100 }, (_, i) => ({
   id: faker.database.mongodbObjectId(),
   name: faker.commerce.department(),
   selected: Math.random() < 0.5,

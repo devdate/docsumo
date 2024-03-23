@@ -5,11 +5,10 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { Icon } from "@iconify/react";
 
-import { CardTitle, CardDescription, CardHeader, CardContent, Card } from "./ui/card";
+import { CardTitle, CardHeader, CardContent, Card } from "./ui/card";
 
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "./ui/form";
 import { Input } from "./ui/input";
-import { Label } from "./ui/label";
 import { PasswordInput } from "./ui/input-pass";
 import { Button } from "./ui/button";
 import { useState } from "react";
@@ -18,7 +17,7 @@ import { InputOTP, InputOTPSlot } from "./ui/input-otp";
 import { api } from "~/utils/api";
 import { useRouter } from "next/router";
 
-const EmailMask: RegExp = /(?<=.{3}).(?=[^@]*?@)/gm;
+const EmailMask = /(?<=.{3}).(?=[^@]*?@)/gm;
 
 const formSchema = z
   .object({
@@ -36,7 +35,7 @@ const formSchema = z
       countOfNumbers = 0,
       countOfSpecialChar = 0;
     for (let i = 0; i < password.length; i++) {
-      let ch = password.charAt(i);
+      const ch = password.charAt(i);
       if (!isNaN(+ch)) countOfNumbers++;
       else if (containsUppercase(ch)) countOfUpperCase++;
       else if (containsLowercase(ch)) countOfLowerCase++;
@@ -77,7 +76,7 @@ const SignUp = () => {
     isError: isOTPError,
     error: otpError,
   } = api.auth.otpverify.useMutation({
-    onSuccess: (token) => {
+    onSuccess: () => {
       alert("Signed Up Successfully");
       router.push("/signin");
     },

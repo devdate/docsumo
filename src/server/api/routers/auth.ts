@@ -49,7 +49,7 @@ export const authRouter = createTRPCRouter({
         message: "Invalid Credentials",
       });
     }),
-  logout: publicProcedure.mutation(async ({ input, ctx }) => {
+  logout: publicProcedure.mutation(({ input, ctx }) => {
     const { res } = ctx;
 
     res.setHeader(
@@ -102,7 +102,7 @@ export const authRouter = createTRPCRouter({
           }
         })
     )
-    .mutation(async ({ input, ctx }) => {
+    .mutation(({ input, ctx }) => {
       const { res } = ctx;
       return;
     }),

@@ -21,7 +21,7 @@ const formSchema = z.object({
 const SignIn = () => {
   const router = useRouter();
   const {
-    mutate: login,
+    mutateAsync: login,
     isError,
     error,
   } = api.auth.login.useMutation({
@@ -38,9 +38,9 @@ const SignIn = () => {
       password: "",
     },
   });
-  function onSubmit(values: z.infer<typeof formSchema>) {
+  async function onSubmit(values: z.infer<typeof formSchema>) {
     console.log(values);
-    login(values);
+    await login(values);
   }
   return (
     <Form {...form}>

@@ -218,7 +218,7 @@ const SignUp = () => {
                 <span className="mb-8 text-lg font-semibold text-red-500">
                   {/* {error.data.zodError.fieldErrors.title} */}
                   {/* {JSON.stringify(error)} */}
-                  {otpError.data?.zodError?.fieldErrors["otp"]}
+                  {otpError.data?.zodError?.fieldErrors.otp}
                 </span>
               </div>
             )}

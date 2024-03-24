@@ -57,7 +57,7 @@ const SignIn = () => {
             <FormItem>
               <FormLabel className="text-[16px]">Email</FormLabel>
               <FormControl>
-                <Input placeholder="example@xyz.com" {...field} className="text-[16px]" />
+                <Input type="email" placeholder="example@xyz.com" {...field} className="text-[16px]" />
               </FormControl>
               <FormMessage />
             </FormItem>

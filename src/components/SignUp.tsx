@@ -142,7 +142,7 @@ const SignUp = () => {
                     <FormItem>
                       <FormLabel className="text-[16px]">Email</FormLabel>
                       <FormControl>
-                        <Input placeholder="example@xyz.com" className="text-[16px]" {...field} />
+                        <Input type="email" placeholder="example@xyz.com" className="text-[16px]" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
@@ -219,6 +219,15 @@ const SignUp = () => {
                   {/* {error.data.zodError.fieldErrors.title} */}
                   {/* {JSON.stringify(error)} */}
                   {otpError.data?.zodError?.fieldErrors.otp}
+                </span>
+              </div>
+            )}
+            {isOTPError && !otpError.data?.zodError?.fieldErrors.otp && (
+              <div className="w-full text-center mt-4">
+                <span className="mb-8 text-lg font-semibold text-red-500">
+                  {/* {error.data.zodError.fieldErrors.title} */}
+                  {/* {JSON.stringify(otpError)} */}
+                  {otpError.shape?.message}
                 </span>
               </div>
             )}

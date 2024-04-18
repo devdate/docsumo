@@ -6,12 +6,12 @@ import { Checkbox } from "./ui/checkbox";
 import { EllipsisVertical } from "lucide-react";
 
 const Section = () => {
-  const [formData, setFormData] = useState<{ [key: number]: boolean }>();
+  const [formData, setFormData] = useState<Record<string, boolean>>({});
 
   const sections = api.section.getSections.useQuery(undefined);
   useEffect(() => {
     if (sections.data?.data.sections) {
-      const obj: { [key: number]: boolean } = {};
+      const obj: Record<string, boolean> = {};
       sections.data?.data.sections[0]?.children?.map((e) => {
         obj[e.id] = true;
       });
@@ -33,24 +33,23 @@ const Section = () => {
                 </div>
               ))}
             {sections.isError && <div> Something Went Wrong! Please try again later</div>}
-            {sections.data?.data?.sections &&
-              sections.data?.data?.sections[0]?.children?.map((e, i) => (
-                <div className=" bg-slate-100 dark:bg-neutral-800 p-2 pt-2 mx-4 rounded-md" key={i}>
-                  <div className="flex items-center gap-2">
-                    <span className="flex-grow">{e.label}</span>
-                    <Checkbox
-                      checked={formData && formData[e.id]}
-                      onCheckedChange={(checked) => {
-                        setFormData((prev) => ({ ...prev, [e.id]: false }));
-                      }}
-                    />
-                    <Button variant="ghost" className="p-0">
-                      <EllipsisVertical />
-                    </Button>
-                  </div>
-                  <span>{e.content?.value}</span>
+            {sections.data?.data?.sections?.[0]?.children?.map((e, i) => (
+              <div className=" bg-slate-100 dark:bg-neutral-800 p-2 pt-2 mx-4 rounded-md" key={i}>
+                <div className="flex items-center gap-2">
+                  <span className="flex-grow">{e.label}</span>
+                  <Checkbox
+                    checked={formData && formData[e.id]}
+                    onCheckedChange={(checked) => {
+                      setFormData((prev) => ({ ...prev, [e.id]: false }));
+                    }}
+                  />
+                  <Button variant="ghost" className="p-0">
+                    <EllipsisVertical />
+                  </Button>
                 </div>
-              ))}
+                <span>{e.content?.value}</span>
+              </div>
+            ))}
           </div>
         </div>
         <div className="flex justify-between py-2 px-4">

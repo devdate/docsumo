@@ -31,7 +31,7 @@ const Header = () => {
             alt="NextJS Logo"
           />
         </Link>
-        <div className="flex items-center text-lg font-medium">Review Screen</div>
+        {router.asPath === "/" && <div className="flex items-center text-lg font-medium">Review Screen</div>}
         <div className="flex items-center space-x-9 rtl:space-x-reverse">
           <DarkToggle />
           <svg

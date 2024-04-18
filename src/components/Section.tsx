@@ -6,7 +6,7 @@ import { Checkbox } from "./ui/checkbox";
 import { EllipsisVertical } from "lucide-react";
 
 const Section = () => {
-  const [formData, setFormData] = useState<{ [key: number]: boolean }>({});
+  const [formData, setFormData] = useState<{ [key: number]: boolean }>();
 
   const sections = api.section.getSections.useQuery(undefined);
   useEffect(() => {

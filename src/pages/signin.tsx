@@ -13,7 +13,7 @@ const page = () => {
       <Card className="mx-auto mt-10 max-w-xl rounded-2xl dark:bg-neutral-900">
         <CardHeader className="space-y-1 text-center">
           <CardTitle className="text-[32px]">Login</CardTitle>
-          <CardTitle className="pt-6 text-[24px] font-medium">Welcome back to ECOMMERCE</CardTitle>
+          <CardTitle className="pt-6 text-[24px] font-medium">Welcome back to Docsumo</CardTitle>
           <CardTitle className="pt-2 text-[16px] font-normal">The next gen business marketplace</CardTitle>
         </CardHeader>
         <CardContent className="md:px-16">

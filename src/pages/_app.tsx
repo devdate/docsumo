@@ -15,12 +15,12 @@ const inter = Inter({
 });
 const MyApp: AppType = ({ Component, pageProps }) => {
   return (
-    <main className={`font-sans min-h-screen bg-background antialiased ${inter.variable}`}>
+    <main className={`font-sans flex flex-col min-h-screen bg-background antialiased ${inter.variable}`}>
       <Theme>
         {" "}
-        <SubHeader />
+        {/* <SubHeader /> */}
         <Header />
-        <PromoCarousal />
+        {/* <PromoCarousal /> */}
         <Component {...pageProps} />
       </Theme>
     </main>
